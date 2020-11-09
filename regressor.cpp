@@ -647,6 +647,28 @@ void Regressor::LoadRegressor(std::string ModelName, int stage){
 	}
 }
 
+void Regressor::LoadRegressor_bin(std::string ModelName, int stage){
+	char buffer[500];
+    sprintf(buffer, "%s_%d_regressor.txt", ModelName.c_str(), stage);
+	std::ifstream fin;
+	fin.open(buffer, std::fstream::in);
+	int rd_size, linear_size;
+	fin >> stage_ >> rd_size >> linear_size;
+	rd_forests_.resize(rd_size);
+	for (int i = 0; i < rd_size; i++){
+		rd_forests_[i].LoadRandomForest(fin);
+	}
+	linear_model_x_.clear();
+	linear_model_y_.clear();
+	for (int i = 0; i < linear_size; i++){
+        sprintf(buffer, "%s_%d/%d_linear_x.txt", ModelName.c_str(), stage_, i);
+		linear_model_x_.push_back(load_model2(buffer));
+
+        sprintf(buffer, "%s_%d/%d_linear_y.txt", ModelName.c_str(), stage_, i);
+		linear_model_y_.push_back(load_model2(buffer));
+	}
+}
+
 void Regressor::ConstructLeafCount(){
     int index = 1;
     int ind = params_.trees_num_per_forest_;

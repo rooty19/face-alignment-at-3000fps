@@ -3,7 +3,7 @@
 
 #include "utils.h"
 #include "randomforest.h"
-
+#include "../readrec3.hpp"
 
 class Regressor {
 public:
@@ -38,6 +38,7 @@ public:
 	cv::Mat_<double> Predict(cv::Mat_<uchar>& image, cv::Mat_<double>& current_shape,
 		BoundingBox& bbox, cv::Mat_<double>& rotation, double scale);
 	void LoadRegressor(std::string ModelName, int stage);
+	void LoadRegressor_bin(std::string ModelName, int stage);	
 	void SaveRegressor(std::string ModelName, int stage);
     void ConstructLeafCount();
     // struct feature_node* GetGlobalBinaryFeaturesThread(cv::Mat_<uchar>& image, cv::Mat_<double>& current_shape, BoundingBox& bbox, cv::Mat_<double>& rotation, double scale);

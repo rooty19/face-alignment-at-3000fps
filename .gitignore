@@ -10,3 +10,5 @@
 ./afw
 ./ibug
 ./release
+./build
+./example
