@@ -377,7 +377,7 @@ void LoadImages(std::vector<cv::Mat_<uchar> >& images,
 
 double CalculateError(cv::Mat_<double>& ground_truth_shape, cv::Mat_<double>& predicted_shape){
     cv::Mat_<double> temp;
-    temp = ground_truth_shape.rowRange(36, 41)-ground_truth_shape.rowRange(42, 47);
+    temp = ground_truth_shape.rowRange(11, 16)-ground_truth_shape.rowRange(17, 22);
     double x =mean(temp.col(0))[0];
     double y = mean(temp.col(1))[0];
     double interocular_distance = sqrt(x*x+y*y);

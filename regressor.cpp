@@ -591,7 +591,7 @@ void CascadeRegressor::LoadCascadeRegressor(std::string ModelName){
 	regressors_.resize(params_.regressor_stages_);
 	for (int i = 0; i < params_.regressor_stages_; i++){
         regressors_[i].params_ = params_;
-		regressors_[i].LoadRegressor(ModelName, i);
+		regressors_[i].LoadRegressor_bin(ModelName, i);
         regressors_[i].ConstructLeafCount();
 	}
 }
@@ -661,10 +661,10 @@ void Regressor::LoadRegressor_bin(std::string ModelName, int stage){
 	linear_model_x_.clear();
 	linear_model_y_.clear();
 	for (int i = 0; i < linear_size; i++){
-        sprintf(buffer, "%s_%d/%d_linear_x.txt", ModelName.c_str(), stage_, i);
+        sprintf(buffer, "%s_%d/%d_linear_x.binp", ModelName.c_str(), stage_, i);
 		linear_model_x_.push_back(load_model2(buffer));
 
-        sprintf(buffer, "%s_%d/%d_linear_y.txt", ModelName.c_str(), stage_, i);
+        sprintf(buffer, "%s_%d/%d_linear_y.binp", ModelName.c_str(), stage_, i);
 		linear_model_y_.push_back(load_model2(buffer));
 	}
 }
